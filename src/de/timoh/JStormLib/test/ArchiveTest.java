@@ -3,6 +3,7 @@ package de.timoh.JStormLib.test;
 
 import de.timoh.JStormLib.MPQArchive;
 import java.io.File;
+import java.util.Arrays;
 
 /**
  *
@@ -11,10 +12,12 @@ import java.io.File;
 public class ArchiveTest {
     public static void main(String[] args){
         try {
-            File f = new File("test.mpq");
-            MPQArchive mpq = MPQArchive.createArchive(f);
-            System.out.println(f.getAbsolutePath());
-            
+            File f = new File("poc.SC2Map");
+            File f2 = new File("test.png");
+            MPQArchive mpq = MPQArchive.openArchive(f);
+            System.out.println(Arrays.toString(mpq.listFiles().toArray()));
+            mpq.renameFile("test-png","test.png");
+            System.out.println(Arrays.toString(mpq.listFiles().toArray()));
             mpq.close();
         } catch (Exception ex) {
             ex.printStackTrace();
