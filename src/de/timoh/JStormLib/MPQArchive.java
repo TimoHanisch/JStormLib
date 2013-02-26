@@ -35,6 +35,10 @@ public class MPQArchive {
         }
     }
     
+    public void openFile(){
+        
+    }
+    
     public void flush() throws MPQArchiveException{
         if(lib.SFileFlushArchive(ref.getValue()) == 0){
             throw new MPQArchiveException("Error occured while flushing the archive. Errorcode "+Kernel32.INSTANCE.GetLastError());
