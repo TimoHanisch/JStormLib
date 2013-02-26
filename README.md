@@ -9,8 +9,5 @@ Important files:
   - StormLib_x64.dll
 
 Important classes:
-  - StormLibWin
-    Contains all function and constant mappings for the StormLib.dll
-
-  - MPQArchive
-    Easy Java-Access to some MPQ-Archive operations.
+  - StormLibWin: Contains all function and constant mappings for the StormLib.dll
+  - MPQArchive: Easy Java-Access to some MPQ-Archive operations.
