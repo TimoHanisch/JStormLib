@@ -122,7 +122,12 @@ public class MPQArchive {
         lib.SFileFindClose(h);
         return list;
     }
-
+    
+    /**
+     * Adds any inmemory changes to the drive.
+     * 
+     * @throws MPQArchiveException Thrown if archive is inactive or an error occured.
+     */
     public void flush() throws MPQArchiveException {
         if (!closed) {
             if (lib.SFileFlushArchive(ref.getValue()) == 0) {
