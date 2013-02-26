@@ -1,0 +1,221 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x0552cd88, pid=6028, tid=6352
+#
+# JRE version: 7.0-b147
+# Java VM: Java HotSpot(TM) Client VM (21.0-b17 mixed mode, sharing windows-x86 )
+# Problematic frame:
+# C  [StormLib_x86.dll+0xcd88]
+#
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.sun.com/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00ab9c00):  JavaThread "main" [_thread_in_native, id=6352, stack(0x023a0000,0x023f0000)]
+
+siginfo: ExceptionCode=0xc0000005, reading address 0x00630065
+
+Registers:
+EAX=0x00630065, EBX=0x00000000, ECX=0x00000000, EDX=0x00000001
+ESP=0x023ef000, EBP=0x023ef00c, ESI=0x00000000, EDI=0x00ad8900
+EIP=0x0552cd88, EFLAGS=0x00010206
+
+Top of Stack: (sp=0x023ef000)
+0x023ef000:   023ef724 00000002 00000000 023ef01c
+0x023ef010:   0552ce10 00ad8900 00000000 023ef028
+0x023ef020:   1000dc25 00ad8900 023ef098 1000d546
+0x023ef030:   1000d000 023ef070 00000002 00000004
+0x023ef040:   00000001 023ef724 0552ce00 00000022
+0x023ef050:   ab5da67b 023ef120 00000001 023ef0e0
+0x023ef060:   00000001 023ef120 023ef098 1000db77
+0x023ef070:   023ef6c0 023ef724 023ef0c0 00000001 
+
+Instructions: (pc=0x0552cd88)
+0x0552cd68:   c4 10 5d c2 10 00 cc cc 55 8b ec 83 e4 f8 56 57
+0x0552cd78:   8b 7d 08 33 f6 85 ff 74 68 8b 47 48 85 c0 74 61
+0x0552cd88:   81 38 4d 50 51 1a 75 59 f6 87 5c 01 00 00 20 74
+0x0552cd98:   0c 8b cf e8 00 f1 ff ff 85 c0 0f 45 f0 f6 87 5c 
+
+
+Register to memory mapping:
+
+EAX=0x00630065 is an unknown value
+EBX=0x00000000 is an unknown value
+ECX=0x00000000 is an unknown value
+EDX=0x00000001 is an unknown value
+ESP=0x023ef000 is pointing into the stack for thread: 0x00ab9c00
+EBP=0x023ef00c is pointing into the stack for thread: 0x00ab9c00
+ESI=0x00000000 is an unknown value
+EDI=0x00ad8900 is an unknown value
+
+
+Stack: [0x023a0000,0x023f0000],  sp=0x023ef000,  free space=316k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [StormLib_x86.dll+0xcd88]  SFileFlushArchive+0x18
+C  [StormLib_x86.dll+0xce10]  SFileCloseArchive+0x10
+C  [jna5052491339103339543.dll+0xdc25]  Java_com_sun_jna_Native_initialize_1ffi_1type+0x4125
+C  [jna5052491339103339543.dll+0xd546]  Java_com_sun_jna_Native_initialize_1ffi_1type+0x3a46
+C  [jna5052491339103339543.dll+0x2e5e]
+C  [jna5052491339103339543.dll+0x54ce]  Java_com_sun_jna_Native_invokeInt+0x2e
+j  com.sun.jna.Native.invokeInt(JI[Ljava/lang/Object;)I+0
+j  com.sun.jna.Function.invoke([Ljava/lang/Object;Ljava/lang/Class;Z)Ljava/lang/Object;+162
+j  com.sun.jna.Function.invoke(Ljava/lang/Class;[Ljava/lang/Object;Ljava/util/Map;)Ljava/lang/Object;+214
+j  com.sun.jna.Library$Handler.invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;+341
+j  $Proxy1.SFileCloseArchive(Lcom/sun/jna/ptr/PointerByReference;)B+16
+j  jnatest.Main.main([Ljava/lang/String;)V+211
+v  ~StubRoutines::call_stub
+V  [jvm.dll+0x122c7e]
+V  [jvm.dll+0x1c9c0e]
+V  [jvm.dll+0x122d0d]
+V  [jvm.dll+0xa77e4]
+V  [jvm.dll+0xb1b77]
+C  [java.exe+0x1fd3]
+C  [java.exe+0xa0ab]
+C  [java.exe+0xa135]
+C  [KERNEL32.DLL+0x28543]  BaseThreadInitThunk+0xe
+C  [ntdll.dll+0x5ac69]  RtlInitializeExceptionChain+0x85
+C  [ntdll.dll+0x5ac3c]  RtlInitializeExceptionChain+0x58
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  com.sun.jna.Native.invokeInt(JI[Ljava/lang/Object;)I+0
+j  com.sun.jna.Function.invoke([Ljava/lang/Object;Ljava/lang/Class;Z)Ljava/lang/Object;+162
+j  com.sun.jna.Function.invoke(Ljava/lang/Class;[Ljava/lang/Object;Ljava/util/Map;)Ljava/lang/Object;+214
+j  com.sun.jna.Library$Handler.invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;+341
+j  $Proxy1.SFileCloseArchive(Lcom/sun/jna/ptr/PointerByReference;)B+16
+j  jnatest.Main.main([Ljava/lang/String;)V+211
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x0249d800 JavaThread "Service Thread" daemon [_thread_blocked, id=5632, stack(0x04a20000,0x04a70000)]
+  0x02498c00 JavaThread "C1 CompilerThread0" daemon [_thread_blocked, id=4064, stack(0x04990000,0x049e0000)]
+  0x02497800 JavaThread "Attach Listener" daemon [_thread_blocked, id=7736, stack(0x04900000,0x04950000)]
+  0x02495400 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=2120, stack(0x04870000,0x048c0000)]
+  0x0248c800 JavaThread "Finalizer" daemon [_thread_blocked, id=6500, stack(0x047e0000,0x04830000)]
+  0x02487c00 JavaThread "Reference Handler" daemon [_thread_blocked, id=2208, stack(0x04750000,0x047a0000)]
+=>0x00ab9c00 JavaThread "main" [_thread_in_native, id=6352, stack(0x023a0000,0x023f0000)]
+
+Other Threads:
+  0x02486800 VMThread [stack: 0x046c0000,0x04710000] [id=7548]
+  0x024b0400 WatcherThread [stack: 0x04ab0000,0x04b00000] [id=3588]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ def new generation   total 4928K, used 3469K [0x24160000, 0x246b0000, 0x296b0000)
+  eden space 4416K,  78% used [0x24160000, 0x244c3518, 0x245b0000)
+  from space 512K,   0% used [0x245b0000, 0x245b0000, 0x24630000)
+  to   space 512K,   0% used [0x24630000, 0x24630000, 0x246b0000)
+ tenured generation   total 10944K, used 0K [0x296b0000, 0x2a160000, 0x34160000)
+   the space 10944K,   0% used [0x296b0000, 0x296b0000, 0x296b0200, 0x2a160000)
+ compacting perm gen  total 12288K, used 782K [0x34160000, 0x34d60000, 0x38160000)
+   the space 12288K,   6% used [0x34160000, 0x34223870, 0x34223a00, 0x34d60000)
+    ro space 10240K,  45% used [0x38160000, 0x385e1888, 0x385e1a00, 0x38b60000)
+    rw space 12288K,  54% used [0x38b60000, 0x391e04f8, 0x391e0600, 0x39760000)
+
+Code Cache  [0x024f0000, 0x02588000, 0x044f0000)
+ total_blobs=255 nmethods=90 adapters=98 free_code_cache=32181Kb largest_free_block=32953664
+
+Dynamic libraries:
+0x00c50000 - 0x00c7e000 	C:\Program Files (x86)\Java\jdk1.7.0\bin\java.exe
+0x77260000 - 0x773b7000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x76a80000 - 0x76bb0000 	C:\WINDOWS\SYSTEM32\KERNEL32.DLL
+0x749c0000 - 0x74a66000 	C:\WINDOWS\SYSTEM32\KERNELBASE.dll
+0x70a30000 - 0x70ad7000 	C:\WINDOWS\system32\apphelp.dll
+0x77070000 - 0x7711e000 	C:\WINDOWS\SYSTEM32\ADVAPI32.dll
+0x75620000 - 0x75736000 	C:\WINDOWS\SYSTEM32\USER32.dll
+0x72b10000 - 0x72d07000 	C:\WINDOWS\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.9200.16384_none_893961408605e985\COMCTL32.dll
+0x75040000 - 0x750f1000 	C:\WINDOWS\SYSTEM32\msvcrt.dll
+0x752c0000 - 0x752f4000 	C:\WINDOWS\SYSTEM32\sechost.dll
+0x75740000 - 0x757ec000 	C:\WINDOWS\SYSTEM32\RPCRT4.dll
+0x74b00000 - 0x74bfd000 	C:\WINDOWS\SYSTEM32\GDI32.dll
+0x748d0000 - 0x748ec000 	C:\WINDOWS\SYSTEM32\SspiCli.dll
+0x748c0000 - 0x748c9000 	C:\WINDOWS\SYSTEM32\CRYPTBASE.dll
+0x74860000 - 0x748b1000 	C:\WINDOWS\SYSTEM32\bcryptPrimitives.dll
+0x74e20000 - 0x74e40000 	C:\WINDOWS\system32\IMM32.DLL
+0x74d40000 - 0x74e1d000 	C:\WINDOWS\SYSTEM32\MSCTF.dll
+0x65480000 - 0x6553e000 	C:\Program Files (x86)\Java\jdk1.7.0\jre\bin\msvcr100.dll
+0x59400000 - 0x59721000 	C:\Program Files (x86)\Java\jdk1.7.0\jre\bin\client\jvm.dll
+0x73f90000 - 0x73f98000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x71460000 - 0x71481000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x76d60000 - 0x76d66000 	C:\WINDOWS\SYSTEM32\PSAPI.DLL
+0x75300000 - 0x75350000 	C:\WINDOWS\SYSTEM32\WS2_32.dll
+0x70360000 - 0x7038a000 	C:\WINDOWS\SYSTEM32\WINMMBASE.dll
+0x74950000 - 0x74958000 	C:\WINDOWS\SYSTEM32\NSI.dll
+0x6d7d0000 - 0x6d7dc000 	C:\Program Files (x86)\Java\jdk1.7.0\jre\bin\verify.dll
+0x65f30000 - 0x65f50000 	C:\Program Files (x86)\Java\jdk1.7.0\jre\bin\java.dll
+0x65d70000 - 0x65d83000 	C:\Program Files (x86)\Java\jdk1.7.0\jre\bin\zip.dll
+0x65330000 - 0x65472000 	C:\Program Files (x86)\Java\jdk1.7.0\jre\bin\awt.dll
+0x75350000 - 0x753db000 	C:\WINDOWS\SYSTEM32\OLEAUT32.dll
+0x75470000 - 0x755a6000 	C:\WINDOWS\SYSTEM32\combase.dll
+0x68910000 - 0x68b54000 	C:\WINDOWS\AppPatch\AcGenral.DLL
+0x74910000 - 0x74950000 	C:\WINDOWS\SYSTEM32\SHLWAPI.dll
+0x73620000 - 0x736a8000 	C:\WINDOWS\SYSTEM32\UxTheme.dll
+0x688f0000 - 0x68902000 	C:\WINDOWS\SYSTEM32\samcli.dll
+0x76f50000 - 0x77069000 	C:\WINDOWS\SYSTEM32\ole32.dll
+0x688d0000 - 0x688e4000 	C:\WINDOWS\SYSTEM32\MSACM32.dll
+0x74850000 - 0x74858000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x757f0000 - 0x768b6000 	C:\WINDOWS\SYSTEM32\SHELL32.dll
+0x73b50000 - 0x73b6b000 	C:\WINDOWS\SYSTEM32\USERENV.dll
+0x737c0000 - 0x737d9000 	C:\WINDOWS\SYSTEM32\dwmapi.dll
+0x74c00000 - 0x74d20000 	C:\WINDOWS\SYSTEM32\urlmon.dll
+0x747f0000 - 0x74850000 	C:\WINDOWS\SYSTEM32\WINSPOOL.DRV
+0x6e350000 - 0x6e363000 	C:\WINDOWS\SYSTEM32\MPR.dll
+0x74050000 - 0x74061000 	C:\WINDOWS\SYSTEM32\profapi.dll
+0x75110000 - 0x752b1000 	C:\WINDOWS\SYSTEM32\iertutil.dll
+0x768c0000 - 0x76a79000 	C:\WINDOWS\SYSTEM32\WININET.dll
+0x74070000 - 0x740e5000 	C:\WINDOWS\SYSTEM32\SHCORE.DLL
+0x74130000 - 0x7414a000 	C:\WINDOWS\SYSTEM32\CRYPTSP.dll
+0x740f0000 - 0x7412e000 	C:\WINDOWS\system32\rsaenh.dll
+0x65d50000 - 0x65d64000 	C:\Program Files (x86)\Java\jdk1.7.0\jre\bin\net.dll
+0x74150000 - 0x7419a000 	C:\WINDOWS\system32\mswsock.dll
+0x73980000 - 0x73990000 	C:\WINDOWS\system32\NLAapi.dll
+0x73970000 - 0x73980000 	C:\WINDOWS\system32\napinsp.dll
+0x73950000 - 0x73964000 	C:\WINDOWS\system32\pnrpnsp.dll
+0x738d0000 - 0x73945000 	C:\WINDOWS\SYSTEM32\DNSAPI.dll
+0x738c0000 - 0x738c9000 	C:\WINDOWS\System32\winrnr.dll
+0x73990000 - 0x73997000 	C:\Windows\System32\rasadhlp.dll
+0x73bc0000 - 0x73be0000 	C:\WINDOWS\SYSTEM32\IPHLPAPI.DLL
+0x73bb0000 - 0x73bb8000 	C:\WINDOWS\SYSTEM32\WINNSI.DLL
+0x73b10000 - 0x73b4f000 	C:\WINDOWS\System32\fwpuclnt.dll
+0x6d770000 - 0x6d77f000 	C:\Program Files (x86)\Java\jdk1.7.0\jre\bin\nio.dll
+0x10000000 - 0x1003d000 	C:\Users\Timo\AppData\Local\Temp\jna-Timo\jna5052491339103339543.dll
+0x05520000 - 0x0557e000 	C:\Users\Timo\Documents\NetBeansProjects\JNATest2\StormLib_x86.dll
+
+VM Arguments:
+jvm_args: -Dfile.encoding=UTF-8 
+java_command: jnatest.Main
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk1.6.0_32
+PATH=C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;c:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\Autodesk\Backburner\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\Timo\Documents\Studium\apache-ant-1.8.3\bin;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0\;C:\Program Files (x86)\Windows Kits\8.0\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files\Java\jdk1.6.0_39\bin;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\NVPACK\android-sdk-windows\platform-tools;C:\NVPACK\android-sdk-windows\tools
+USERNAME=Timo
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=AMD64 Family 16 Model 4 Stepping 3, AuthenticAMD
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows NT 6.2 Build 9200 
+
+CPU:total 4 (4 cores per cpu, 1 threads per core) family 16 model 4 stepping 3, cmov, cx8, fxsr, mmx, sse, sse2, sse3, popcnt, mmxext, 3dnowpref, lzcnt, sse4a
+
+Memory: 4k page, physical 8387764k(4690464k free), swap 16776372k(12251328k free)
+
+vm_info: Java HotSpot(TM) Client VM (21.0-b17) for windows-x86 JRE (1.7.0-b147), built on Jun 27 2011 02:25:52 by "java_re" with unknown MS VC++:1600
+
+time: Wed Feb 20 11:16:03 2013
+elapsed time: 0 seconds
+
