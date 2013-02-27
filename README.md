@@ -15,6 +15,6 @@ Important classes:
   - MPQArchive: Easy Java-Access to some MPQ-Archive operations.
 
 Usefull Links:
-<a href="https://github.com/stormlib/StormLib">https://github.com/stormlib/StormLib</a>
+<a href="https://github.com/stormlib/StormLib">https://github.com/stormlib/StormLib</a><br>
 <a href="http://www.zezula.net/en/mpq/stormlib.html">http://www.zezula.net/en/mpq/stormlib.html</a>
 
