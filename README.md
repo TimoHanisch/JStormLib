@@ -1,5 +1,5 @@
-JStormLib
-=========
+JStormLib v1.1
+==============
 JStormLib is a JAVA-Wrapper for the C++ Library StormLib by Ladislav Zezula. It's used to open
 the MPQ-Archives found in games created by Blizzard Entertainment.
 
