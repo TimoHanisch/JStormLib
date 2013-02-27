@@ -14,7 +14,7 @@ Important classes:
   - StormLibWin: Contains all function and constant mappings for the StormLib.dll
   - MPQArchive: Easy Java-Access to some MPQ-Archive operations.
 
-Usefull Links:
+Usefull Links:<br>
 <a href="https://github.com/stormlib/StormLib">https://github.com/stormlib/StormLib</a><br>
 <a href="http://www.zezula.net/en/mpq/stormlib.html">http://www.zezula.net/en/mpq/stormlib.html</a>
 
