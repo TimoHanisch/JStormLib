@@ -1,4 +1,4 @@
-package de.timoh.JStormLib;
+package com.JStormLib;
 
 import com.sun.jna.Native;
 

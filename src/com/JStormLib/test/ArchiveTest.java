@@ -1,7 +1,7 @@
 
-package de.timoh.JStormLib.test;
+package com.JStormLib.test;
 
-import de.timoh.JStormLib.MPQArchive;
+import com.JStormLib.MPQArchive;
 import java.io.File;
 import java.util.Arrays;
 

@@ -1,8 +1,8 @@
-package de.timoh.JStormLib;
+package com.JStormLib;
 
 import com.sun.jna.Structure;
 import com.sun.jna.platform.win32.Kernel32;
-import de.timoh.JStormLib.StormLibWin.LCID;
+import com.JStormLib.StormLibWin.LCID;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

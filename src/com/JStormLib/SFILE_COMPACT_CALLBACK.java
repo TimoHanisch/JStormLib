@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.timoh.JStormLib;
+package com.JStormLib;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.win32.StdCallLibrary.StdCallCallback;

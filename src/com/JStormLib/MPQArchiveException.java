@@ -1,5 +1,5 @@
 
-package de.timoh.JStormLib;
+package com.JStormLib;
 
 /**
  * 
