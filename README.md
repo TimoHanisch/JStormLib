@@ -3,8 +3,8 @@ JStormLib v1.1
 JStormLib is a JAVA-Wrapper for the C++ Library StormLib by Ladislav Zezula. It's used to open
 the MPQ-Archives found in games created by Blizzard Entertainment.
 
-It uses the JNA-Library to access the native functions.
-When used the library detects if you use a x86 or x64 system and loads the needed DLL.
+Requires the JNA-Library (including the platform library) for accessing the native functions.
+When loaded the library detects your OS-Arch and loads the x86 or x64 StormLib DLL.
 
 Important files:
   - StormLib_x86.dll
