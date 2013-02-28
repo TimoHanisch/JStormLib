@@ -8,10 +8,13 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
- * @author Timo
+ * @author Timo Hanisch (timohanisch@gmail.com)
+ * @version 1.0
  */
 public class SFILE_FIND_DATA extends Structure{
+    
+    SFILE_FIND_DATA() { }
+    
     public byte[] cFileName = new byte[Kernel32.MAX_PATH]; // Full name of the found file
     public String szPlainName;               // Plain name of the found file
     public int  dwHashIndex;                 // Hash table index for the file
@@ -28,7 +31,7 @@ public class SFILE_FIND_DATA extends Structure{
         return new ArrayList(Arrays.asList(new String[]{"cFileName", "szPlainName", "dwHashIndex", "dwBlockIndex", "dwFileSize", "dwFileFlags", "dwCompSize", "dwFileTimeLo", "dwFileTimeHi", "lcLocale"}));
     }
     
-    public static class ByReference extends SFILE_FIND_DATA implements Structure.ByReference {}
+    static class ByReference extends SFILE_FIND_DATA implements Structure.ByReference {}
 
-    public static class ByValue extends SFILE_FIND_DATA implements Structure.ByValue {}
+    static class ByValue extends SFILE_FIND_DATA implements Structure.ByValue {}
 }

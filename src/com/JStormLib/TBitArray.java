@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TBitArray extends Structure {
+/**
+ * @author Timo Hanisch (timohanisch@gmail.com)
+ * @version 1.0
+ */
+class TBitArray extends Structure {
 
     public int NumberOfBits;
 

@@ -16,7 +16,7 @@ public class ArchiveTest {
             File f2 = new File("test.png");
             MPQArchive mpq = MPQArchive.openArchive(f);
             System.out.println(Arrays.toString(mpq.listFiles().toArray()));
-            mpq.renameFile("test-png","test.png");
+//            mpq.renameFile("test-png","test.png");
             System.out.println(Arrays.toString(mpq.listFiles().toArray()));
             mpq.close();
         } catch (Exception ex) {

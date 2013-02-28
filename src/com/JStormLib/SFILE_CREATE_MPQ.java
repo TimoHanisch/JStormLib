@@ -7,11 +7,13 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
- * @author Timo
+ * @author Timo Hanisch (timohanisch@gmail.com)
+ * @version 1.0
  */
 public class SFILE_CREATE_MPQ extends Structure {
 
+    SFILE_CREATE_MPQ() { }
+    
     public int cbSize;                       // Size of this structure, in bytes
     public int dwMpqVersion;                 // Version of the MPQ to be created
     public Pointer pvUserData;               // Reserved, must be NULL
@@ -29,9 +31,9 @@ public class SFILE_CREATE_MPQ extends Structure {
         return new ArrayList(Arrays.asList(new String[]{"cbSize", "dwMpqVersion", "pvUserData", "cbUserData", "dwStreamFlags", "dwFileFlags1", "dwFileFlags2", "dwAttrFlags", "dwSectorSize", "dwRawChunkSize", "dwMaxFileCount"}));
     }
 
-    public static class ByReference extends SFILE_CREATE_MPQ implements Structure.ByReference {
+    static class ByReference extends SFILE_CREATE_MPQ implements Structure.ByReference {
     }
 
-    public static class ByValue extends SFILE_CREATE_MPQ implements Structure.ByValue {
+    static class ByValue extends SFILE_CREATE_MPQ implements Structure.ByValue {
     }
 }

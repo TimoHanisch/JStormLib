@@ -21,7 +21,7 @@ import java.nio.IntBuffer;
  * This Interface is a wrapper for the StormLib.dll developed by <a href="mailto:ladik@zezula.net">Ladislav Zezula</a>
  * for Windows. 
  * 
- * @author <a href="mailto:timohanisch@gmail.com">Timo Hanisch</a>
+ * @author Timo Hanisch (timohanisch@gmail.com)
  * @version 1.0
  */
 public interface StormLibWin extends StdCallLibrary {

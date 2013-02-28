@@ -17,7 +17,7 @@ import java.util.List;
  * with MPQArchive.openArchive/createArchive .
  *
  * @author Timo Hanisch (timohanisch@gmail.com)
- * @version 1.1
+ * @version 1.2
  */
 public class MPQArchive {
 
@@ -34,11 +34,11 @@ public class MPQArchive {
 
     /**
      * Adds a new listfile to the archive, {@link #flush()} should be called
-     * afterwards, since addListfile only adds to the in-memory archive. 
-     * 
+     * afterwards, since addListfile only adds to the in-memory archive.
+     *
      * @param f The listfile
      * @throws FileNotFoundException Thrown if f could not be found
-     * @throws MPQArchiveException Thrown if archive is inactive or an error 
+     * @throws MPQArchiveException Thrown if archive is inactive or an error
      * occured while adding the listfile
      */
     public void addListFile(File f) throws FileNotFoundException, MPQArchiveException {
@@ -57,10 +57,10 @@ public class MPQArchive {
 
     /**
      * Extracts a file from the archive to the given path.
-     * 
+     *
      * @param fileName File within the archive
      * @param dest The file destination
-     * @throws MPQArchiveException Thrown if archive is inactive or an error 
+     * @throws MPQArchiveException Thrown if archive is inactive or an error
      * occured while extracting the file.
      */
     public void extractFile(String fileName, File dest) throws MPQArchiveException {
@@ -74,13 +74,14 @@ public class MPQArchive {
     }
 
     /**
-     * Adds an external file to the archive. Internally {@link StormLibWin#SFileCompactArchive} 
-     * is called for defragmenting the archive.
-     * 
+     * Adds an external file to the archive. Internally
+     * {@link StormLibWin#SFileCompactArchive} is called for defragmenting the
+     * archive.
+     *
      * @param f The file which should be added
      * @param name The name for the file within the archive
-     * @throws MPQArchiveException Thrown if archive is inactive or an error occured
-     * while adding the file or compacting the archive.
+     * @throws MPQArchiveException Thrown if archive is inactive or an error
+     * occured while adding the file or compacting the archive.
      */
     public void addFile(File f, String name) throws MPQArchiveException {
         if (!closed) {
@@ -90,22 +91,23 @@ public class MPQArchive {
                 }
             } else {
                 int error = Kernel32.INSTANCE.GetLastError();
-                throw new MPQArchiveException("Error while adding file to archive. " + (error == 183 ? "File already exists.":"Errorcode "+error));
+                throw new MPQArchiveException("Error while adding file to archive. " + (error == 183 ? "File already exists." : "Errorcode " + error));
             }
         } else {
             throw new MPQArchiveException("Inactive archive");
         }
     }
-    
+
     /**
-     * Removes the file with the given name from the archive. Internally {@link StormLibWin#SFileCompactArchive} 
-     * is called for defragmenting the archive.
-     * 
+     * Removes the file with the given name from the archive. Internally
+     * {@link StormLibWin#SFileCompactArchive} is called for defragmenting the
+     * archive.
+     *
      * @param name Name of the file
-     * @throws MPQArchiveException Thrown if archive is inactive or an error occured
-     * while removing the file or compacting the archive.
+     * @throws MPQArchiveException Thrown if archive is inactive or an error
+     * occured while removing the file or compacting the archive.
      */
-    public void removeFile(String name) throws MPQArchiveException{
+    public void removeFile(String name) throws MPQArchiveException {
         if (!closed) {
             if (lib.SFileRemoveFile(ref.getValue(), name, 0) != 0) {
                 if (lib.SFileCompactArchive(ref.getValue(), null, (byte) 0) == 0) {
@@ -113,35 +115,35 @@ public class MPQArchive {
                 }
             } else {
                 int error = Kernel32.INSTANCE.GetLastError();
-                throw new MPQArchiveException("Error while removing file from archive. " + (error == 2 ? "File not found.":"Errorcode "+error));
+                throw new MPQArchiveException("Error while removing file from archive. " + (error == 2 ? "File not found." : "Errorcode " + error));
             }
         } else {
             throw new MPQArchiveException("Inactive archive");
         }
     }
-    
+
     /**
      * Renames a file within the archive.
-     * 
+     *
      * @param oldName The old name of the file
      * @param newName The new name of the file
-     * @throws MPQArchiveException Thrown if archive is inactive or an error occured
-     * while renaming the file.
+     * @throws MPQArchiveException Thrown if archive is inactive or an error
+     * occured while renaming the file.
      */
-    public void renameFile(String oldName, String newName) throws MPQArchiveException{
+    public void renameFile(String oldName, String newName) throws MPQArchiveException {
         if (!closed) {
             if (lib.SFileRenameFile(ref.getValue(), oldName, newName) == 0) {
                 int error = Kernel32.INSTANCE.GetLastError();
-                throw new MPQArchiveException("Error while removing file from archive. " + (error == 2 ? "File not found.":"Errorcode "+error));
+                throw new MPQArchiveException("Error while removing file from archive. " + (error == 2 ? "File not found." : "Errorcode " + error));
             }
         } else {
             throw new MPQArchiveException("Inactive archive");
         }
     }
-    
+
     /**
      * Checks if the given file exists within the MPQ-Archive.
-     * 
+     *
      * @param fileName The name which should be looked up.
      * @return True when file exists within the archive, otherwise false.
      * @throws MPQArchiveException Thrown if archive is inactive.
@@ -155,29 +157,30 @@ public class MPQArchive {
 
     /**
      * Lists all files within the archive.
-     * 
+     *
      * @return List of filenames within the archive.
      * @throws MPQArchiveException Thrown if archive is inactive.
      */
-    public List<String> listFiles() throws MPQArchiveException {
+    public List<MPQFile> listFiles() throws MPQArchiveException {
         if (closed) {
             throw new MPQArchiveException("Inactive archive");
         }
-        List<String> list = new LinkedList<String>();
+        List<MPQFile> list = new LinkedList<MPQFile>();
         SFILE_FIND_DATA.ByReference data = new SFILE_FIND_DATA.ByReference();
         HANDLE h = lib.SFileFindFirstFile(ref.getValue(), "*", data, null);
-        list.add(data.szPlainName);
+        list.add(new MPQFile(data));
         while (lib.SFileFindNextFile(h, data) != 0) {
-            list.add(data.szPlainName);
+            list.add(new MPQFile(data));
         }
         lib.SFileFindClose(h);
         return list;
     }
-    
+
     /**
      * Adds any in-memory changes to the drive.
-     * 
-     * @throws MPQArchiveException Thrown if archive is inactive or an error occured.
+     *
+     * @throws MPQArchiveException Thrown if archive is inactive or an error
+     * occured.
      */
     public void flush() throws MPQArchiveException {
         if (!closed) {
@@ -190,8 +193,9 @@ public class MPQArchive {
     }
 
     /**
-     * Closes the archive and marks it as inactive. Internally calls {@link #flush()}.
-     * 
+     * Closes the archive and marks it as inactive. Internally calls
+     * {@link #flush()}.
+     *
      * @throws IOException Thrown if archive could not be closed
      * @throws MPQArchiveException Thrown if archive is allready inactive
      */
@@ -208,9 +212,9 @@ public class MPQArchive {
     }
 
     /**
-     * Creates an archive. When an archive for the given file already exists, the
-     * archive is opened.
-     * 
+     * Creates an archive. When an archive for the given file already exists,
+     * the archive is opened.
+     *
      * @param f File for the archive to be created
      * @return The created or opened archive
      * @throws IOException Thrown if the archive could not be created or opened
@@ -220,14 +224,16 @@ public class MPQArchive {
     }
 
     /**
-     * Creates an archive with given version: <br>{@link StormLibWin#MPQ_CREATE_ARCHIVE_V1}, 
-     * <br>{@link StormLibWin#MPQ_CREATE_ARCHIVE_V2}, 
-     * <br>{@link StormLibWin#MPQ_CREATE_ARCHIVE_V3}, 
-     * <br>{@link StormLibWin#MPQ_CREATE_ARCHIVE_V4}, 
-     * <br>Default is {@link StormLibWin#MPQ_CREATE_ARCHIVE_V2}. The maxFiles should be
-     * within {@link StormLibWin#HASH_TABLE_SIZE_MIN} and {@link StormLibWin#HASH_TABLE_SIZE_MAX}. 
-     * When an archive for the given file already exists, the archive is opened.
-     * 
+     * Creates an archive with given version:
+     * <br>{@link StormLibWin#MPQ_CREATE_ARCHIVE_V1},
+     * <br>{@link StormLibWin#MPQ_CREATE_ARCHIVE_V2},
+     * <br>{@link StormLibWin#MPQ_CREATE_ARCHIVE_V3},
+     * <br>{@link StormLibWin#MPQ_CREATE_ARCHIVE_V4},
+     * <br>Default is {@link StormLibWin#MPQ_CREATE_ARCHIVE_V2}. The maxFiles
+     * should be within {@link StormLibWin#HASH_TABLE_SIZE_MIN} and
+     * {@link StormLibWin#HASH_TABLE_SIZE_MAX}. When an archive for the given
+     * file already exists, the archive is opened.
+     *
      * @param f File for the archive to be created
      * @param mpqVersion MPQ-Version for the archive
      * @param maxFiles The max files contained by the archive
@@ -254,9 +260,9 @@ public class MPQArchive {
 
     /**
      * Opens the archive for the given file.
-     * 
+     *
      * @param f The archive file
-     * @return The opened archive 
+     * @return The opened archive
      * @throws FileNotFoundException Thrown if f could not be found
      * @throws IOException Thrown if the archive could not be created or opened
      */
@@ -265,9 +271,10 @@ public class MPQArchive {
     }
 
     /**
-     * Opens the archive for the given file with chosen flag. For flags available
-     * check <a href="http://www.zezula.net/en/mpq/stormlib/sfileopenarchive.html">http://www.zezula.net/en/mpq/stormlib/sfileopenarchive.html</a>
-     * 
+     * Opens the archive for the given file with chosen flag. For flags
+     * available check <a
+     * href="http://www.zezula.net/en/mpq/stormlib/sfileopenarchive.html">http://www.zezula.net/en/mpq/stormlib/sfileopenarchive.html</a>
+     *
      * @param f The archive file
      * @param flag Specifies how to open the archive
      * @return The opened archive

@@ -6,10 +6,10 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
- * @author Timo
+ * @author Timo Hanisch (timohanisch@gmail.com)
+ * @version 1.0
  */
-public class TFileBitmap extends Structure{
+class TFileBitmap extends Structure{
     
     public int StartOffset;                      // Starting offset of the file, covered by bitmap
     public int EndOffset;                        // Ending offset of the file, covered by bitmap

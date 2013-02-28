@@ -3,8 +3,8 @@ package com.JStormLib;
 import com.sun.jna.Native;
 
 /**
- *
- * @author Timo Hanisch
+ * @author Timo Hanisch (timohanisch@gmail.com)
+ * @version 1.0
  */
 class StormLibLoader {
     
@@ -27,6 +27,12 @@ class StormLibLoader {
         INSTANCE = (StormLibWin) Native.loadLibrary(getPathForOS(!arch.contains("64")), StormLibWin.class);
     }
 
+    /**
+     * Determines the path for the given OS-Arch type.
+     * 
+     * @param x86
+     * @return 
+     */
     public static String getPathForOS(boolean x86) {
         switch(getOS()){
             case OS_WIN :
